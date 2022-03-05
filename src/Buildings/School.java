@@ -13,12 +13,6 @@ public class School {
     private List<Room> leftRooms;
     private List<Room> rightRooms;
 
-//    private Question hyenaQuestion = new Question("Sind Hyänen Hundetiere?", eYesNo.Nein);
-
-//    private Door floorDoorLeft= new Door();
-
-//    private Room floor = new Room("Flur", )
-
     public School(String name) {
         this.name = name;
 
@@ -31,12 +25,8 @@ public class School {
         System.out.println("Herzlich Willkommen" + player.getName());
     }
 
-    public void getNextRoom() {
-
-    }
-
-    private void createRooms() {
-//        rooms.add();
+    public void walkToNextRoom() {
+        System.out.println("");
     }
 
 }

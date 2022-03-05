@@ -7,6 +7,9 @@ public class Door {
 
     public Door(YesNoQuestion quiz) {
         this.quiz = quiz;
-//        quiz = new Quiz("Gehören Hyänen zu den Hundetieren?",eYesNo.Ja,eYesNo.Ja,eYesNo.Nein);
+    }
+
+    public void open(){
+        this.quiz.askQuestion();
     }
 }

@@ -18,6 +18,7 @@ public abstract class YesNoQuestion implements ICheckConsoleInput {
 
     public boolean askQuestion() {
         System.out.println(question);
+        System.out.println("Auswahlmöglichkeiten: J(Ja) oder N(Nein)");
         String input = scanner.nextLine();
 
         if (compareInputsIgnoreCase("J", input)) {
