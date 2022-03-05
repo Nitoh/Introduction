@@ -12,12 +12,13 @@ public class Student extends Human {
     }
 
     public eLeftRight chooseDoor() {
-        System.out.println("Welche Türe möchtest du wählen?\nBitte L für Links oder R für rechts eingeben\n");
+        System.out.println("Welche Türe möchtest du wählen?\nBitte L für Links oder R für rechts eingeben");
 
         Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
 
-        if (scanner.nextLine() == "L" || scanner.nextLine() == "l") return eLeftRight.Left;
-        if (scanner.nextLine() == "R" || scanner.nextLine() == "r") return eLeftRight.Right;
+        if (input.equalsIgnoreCase("L")) return eLeftRight.Left;
+        if (input.equalsIgnoreCase("R")) return eLeftRight.Right;
 
         else {
             System.out.println("Falsche Eingabe!\nBitte erneut eingeben.");

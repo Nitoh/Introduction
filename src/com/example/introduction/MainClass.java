@@ -4,6 +4,7 @@ import Base.TextFileReader;
 import People.Human;
 import People.Student;
 import People.Teacher;
+import Questions.HyenaQuestion;
 
 import java.io.Console;
 import java.io.IOException;
@@ -12,8 +13,11 @@ import java.util.Scanner;
 public class MainClass {
     public static void main(String[] args) throws IOException {
 
-        Student student = new Student("Serhat", 26);
-        student.chooseDoor();
+//        Student student = new Student("Serhat", 26);
+//        student.chooseDoor();
+
+        HyenaQuestion hq = new HyenaQuestion();
+        hq.askQuestion();
 
 //        doTeacherLogic();
 //         doFileLogic();
