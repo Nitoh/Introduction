@@ -5,9 +5,6 @@ public class HelloWorld {
         System.out.println("Good morning world!");
 
         // String[] result = FileReader.readFile();
-        // String[] result = FileReader.readFile();
-        // String[] result = FileReader.readFile();
-        // String[] result = FileReader.readFile();
 
     }
 }
