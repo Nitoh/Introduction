@@ -1,5 +1,6 @@
 package People;
 
+import Buildings.Door;
 import Enums.eLeftRight;
 
 import java.io.Console;
@@ -13,8 +14,8 @@ public class Student extends Human {
         super(name, age);
     }
 
-    public void chooseDoor() {
-        System.out.println("Welche Türe möchtest du wählen?\nBitte L für Links oder R für rechts eingeben");
+    public eLeftRight chooseDoor() {
+//        System.out.println("Welche Türe möchtest du wählen?\nBitte L für Links oder R für rechts eingeben");
 
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
@@ -25,7 +26,7 @@ public class Student extends Human {
             System.out.println("Falsche Eingabe!\nBitte erneut eingeben.");
             chooseDoor();
         }
-
+        return direction;
     }
 
     public eLeftRight getStudentDirection() {

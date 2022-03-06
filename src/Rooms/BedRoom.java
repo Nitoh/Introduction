@@ -1,20 +1,17 @@
 package Rooms;
 
-import Buildings.Door;
 import Buildings.Room;
 import Enums.eLeftRight;
 import Questions.GermanReunionQuestion;
 import Questions.HyenaQuestion;
+import Buildings.Door;
 
-public class Floor extends Room {
+public class BedRoom extends Room {
 
-    public Floor() {
+    public BedRoom() {
+
         this.leftDoor = new Door(new HyenaQuestion());
         this.rightDoor = new Door(new GermanReunionQuestion());
-
-        this.roomBehindLeftDoor = new Kitchen();
-        this.roomBehindRightDoor = new BedRoom();
-
         this.name = "Flur";
     }
 

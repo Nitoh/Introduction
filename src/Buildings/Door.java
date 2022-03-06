@@ -1,11 +1,11 @@
 package Buildings;
 
-import Questions.YesNoQuestion;
+import Questions.Question;
 
 public class Door {
-    public final YesNoQuestion quiz;
+    public final Question quiz;
 
-    public Door(YesNoQuestion quiz) {
+    public Door(Question quiz) {
         this.quiz = quiz;
     }
 
