@@ -1,6 +1,6 @@
 package Enums;
 
-public enum eYesNo {
+public enum eDecisionYesNo {
     Ja,
     Nein,
 }

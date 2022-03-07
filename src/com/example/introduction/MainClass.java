@@ -1,24 +1,24 @@
 package com.example.introduction;
 
 import Base.TextFileReader;
-import Buildings.School;
-import People.Student;
-import Rooms.Floor;
+import Game.School;
+import People.Player;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class MainClass {
     public static void main(String[] args) throws IOException {
 
-        Student student = new Student("Serhat", 26);
+        System.out.println("Hallo. Bevor wir das Spiel beginnen brauche ich deinen Namen.\nWie heißt du?");
+        Scanner scanner = new Scanner(System.in);
+        String studentName = scanner.nextLine();
+
+        Player student = new Player(studentName, 26);
 //        student.chooseDoor();
 
-        School school = new School("Die Schule der ganz schlauen");
+        School school = new School("Die Schule der ganz schlauen..");
         school.startGameWithPlayer(student);
-        school.walkToNextRoom();
-
-//        Floor floor = new Floor();
-//        floor.tryToOpenDoor(student.getStudentDirection());
     }
 
     private static void doFileLogic() throws IOException {

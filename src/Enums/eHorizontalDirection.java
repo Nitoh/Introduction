@@ -1,6 +1,6 @@
 package Enums;
 
-public enum eLeftRight {
+public enum eHorizontalDirection {
     Left,
     Right,
 }

@@ -8,6 +8,6 @@ public class MiddleAgesQuestion extends Question{
         this.optionOne = "Von 500-1500 n.Chr.";
         this.optionTwo = "Von 300-1200 n.Chr.";
 
-        this.correctAnswer = 'B';
+        this.correctAnswer = 'A';
     }
 }

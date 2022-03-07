@@ -1,7 +1,5 @@
 package Questions;
 
-import Enums.eYesNo;
-
 public class GermanReunionQuestion extends Question {
     public GermanReunionQuestion(){
         this.question = "Wann fand die Wiedervereinigung in Deutschland statt?";

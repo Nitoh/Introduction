@@ -1,11 +1,12 @@
 package Questions;
 
-import Interfaces.Input.ICheckConsoleInput;
+import Text.GameTexts;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public abstract class Question implements ICheckConsoleInput {
+public abstract class Question {
 
     protected String question;
     protected String optionOne;
@@ -14,6 +15,7 @@ public abstract class Question implements ICheckConsoleInput {
     protected Character correctAnswer;
     protected Character selectedAnswer;
 
+    protected boolean isFunQuestion = false;
     private boolean isAnswerCorrect = false;
 
     private List<Character> allowedAnswers = new ArrayList<Character>();
@@ -26,34 +28,33 @@ public abstract class Question implements ICheckConsoleInput {
     public boolean askQuestion() {
         getQuestionWithAnswerPossibilities();
 
-        String input = new String(readAnswer());
+        Scanner scanner = new Scanner(System.in);
+        String input = new String(scanner.nextLine());
+
+        while (!input.equalsIgnoreCase("a") && !input.equalsIgnoreCase("b")) {
+            System.out.println(GameTexts.getWrongInputPleaseABSpeech());
+            input = scanner.nextLine();
+        }
+
         selectedAnswer = input.charAt(0);
 
+        if (isFunQuestion) return false;
+
         if (Character.toLowerCase(selectedAnswer) == Character.toLowerCase(correctAnswer)) {
-            System.out.println("Korrekte Antwort!");
+            System.out.println(GameTexts.getCorrectAnswerSpeech());
             isAnswerCorrect = true;
         } else {
-            System.out.println("Falsche Antwort..");
+            System.out.println(GameTexts.getWrongAnswerSpeech());
         }
         return isAnswerCorrect;
     }
 
+    /**
+     * Reads the question and the possible answers
+     */
     private void getQuestionWithAnswerPossibilities() {
         System.out.println(question);
-        System.out.println("Welche Antwort ist richtig?");
-        System.out.println("A: " + optionOne + " oder " + "B: " + optionTwo);
-    }
-
-    private String readAnswer() {
-        String answer = new String(scanner.nextLine());
-
-        if (allowedAnswers.contains(answer.toUpperCase().charAt(0)) ||
-                allowedAnswers.contains(answer.toLowerCase().charAt(0))) {
-            return answer;
-        } else {
-            System.out.println("Falsche Eingabe! Bitte zwischen A oder B entscheiden!");
-            readAnswer();
-        }
-        return answer;
+        System.out.println(GameTexts.getAskForAnsweringSpeech());
+        System.out.println("A: " + optionOne + "\n" + "B: " + optionTwo);
     }
 }
