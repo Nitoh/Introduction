@@ -18,7 +18,7 @@ public class MainClass {
 //        student.chooseDoor();
 
         School school = new School("Die Schule der ganz schlauen..");
-        school.startGameWithPlayer(student);
+        school.runGame(student);
     }
 
     private static void doFileLogic() throws IOException {

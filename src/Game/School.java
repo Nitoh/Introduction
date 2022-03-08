@@ -22,8 +22,8 @@ public class School implements IWordComparison {
 
     private boolean isGameOver = false;
 
-    ArrayList<String> allowedWordsForHeadsOrTails = new ArrayList<>();
-    ArrayList<String> yesNoWords = new ArrayList<>();
+    private ArrayList<String> allowedWordsForHeadsOrTails = new ArrayList<>();
+    private ArrayList<String> yesNoWords = new ArrayList<>();
 
     public School(String name) {
         this.name = name;
@@ -38,41 +38,44 @@ public class School implements IWordComparison {
     /**
      * starts the game in a while loop and ends it if the player is in the masterroom
      *
-     * @param student
+     * @param player
      */
-    public void startGameWithPlayer(Player student) {
-        this.player = student;
+    public void runGame(Player player) {
+        this.player = player;
 
-        System.out.println(GameTexts.getWelcomeSpeech() + " " + player.getName() + "!");
+        System.out.println(GameTexts.getWelcomeSpeech() + " " + this.player.getName() + "!");
         System.out.println(GameTexts.getIntroductionSpeech());
 
         while (!isGameOver) {
-            if (!getRoomQuestion()) {
-                walkToNextRoom();
+            if (tryToAnswerRoomQuestion()) {
+                moveToNextRoom();
             }
 
+            // options if game is over
             tryToUsePlayerJokerWhenGameIsOver();
-
             checkIfMasterRoom();
-
             askIfPlayAgain();
         }
     }
 
-    private boolean getRoomQuestion() {
-        if (!currentRoom.getRoomIntroductionAndQuestion()) {
+    /**
+     * @return isAnswerCorrect
+     */
+    private boolean tryToAnswerRoomQuestion() {
+        boolean isAnswerCorrect = currentRoom.getRoomIntroductionAndQuestion();
+        if (!isAnswerCorrect) {
             if (!(currentRoom.getClass() == MasterRoom.class)) {
                 System.out.println(GameTexts.getGameOverSpeech());
             }
             isGameOver = true;
         }
-        return isGameOver;
+        return isAnswerCorrect;
     }
 
     /**
      * player has to choose direction if it's possible
      */
-    public void walkToNextRoom() {
+    private void moveToNextRoom() {
         if (currentRoom.hasChoice()) {
             System.out.println(GameTexts.getMultipleDoorSpeech());
 
@@ -100,6 +103,9 @@ public class School implements IWordComparison {
         }
     }
 
+    /**
+     * Player has one chance to continue the game with a heads or tails joker
+     */
     private void tryToUsePlayerJokerWhenGameIsOver() {
         if (isGameOver && player.hasJoker()) {
             System.out.println(GameTexts.getGameOverUseJokerSpeech());
@@ -112,7 +118,7 @@ public class School implements IWordComparison {
             }
 
             // hope for the best..
-            player.useJoker();
+            player.useJokerAndSetIntoToken();
             if (compareFirstCharacterOfStringsIgnoreCase(headsOrTails, player.getToken())) {
                 System.out.println("Und das richtige Ergebnis lautet.. " + headsOrTails + " !\nDu darfst weiterspielen!");
                 isGameOver = false;
@@ -123,6 +129,9 @@ public class School implements IWordComparison {
         }
     }
 
+    /**
+     * Asks the player to play again if game is over before the while loop ends
+     */
     private void askIfPlayAgain() {
         if (isGameOver) {
             System.out.println(GameTexts.getRestartGameSpeech());
@@ -137,16 +146,22 @@ public class School implements IWordComparison {
         }
     }
 
+    /**
+     * reset the fields to defauls values
+     */
     private void refreshGame() {
         startRoom = new Floor();
         currentRoom = startRoom;
 
         System.out.println("Das Spiel wird neu gestartet!");
         isGameOver = false;
-        startGameWithPlayer(player);
-        player.refreshItems();
+        this.player.refreshItems();
+        runGame(this.player);
     }
 
+    /**
+     * these words are allowed at the joker game
+     */
     private void collectHeadsOrTailsWords() {
         allowedWordsForHeadsOrTails.add("k");
         allowedWordsForHeadsOrTails.add("z");
@@ -154,6 +169,9 @@ public class School implements IWordComparison {
         allowedWordsForHeadsOrTails.add("Zahl");
     }
 
+    /**
+     * these words are allowed in yes no questions
+     */
     private void collectYesNoWords() {
         yesNoWords.add("j");
         yesNoWords.add("n");

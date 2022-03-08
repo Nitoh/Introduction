@@ -5,7 +5,6 @@ import Enums.eHorizontalDirection;
 import Text.GameTexts;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Player extends Human {
 
@@ -51,7 +50,7 @@ public class Player extends Human {
         return hasJoker;
     }
 
-    public void useJoker() {
+    public void useJokerAndSetIntoToken() {
         Random random = new Random();
         int number = random.nextInt(2 + 1) + 1;
         if (number == 1) token = "Kopf";
